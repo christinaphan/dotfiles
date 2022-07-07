@@ -1,0 +1,87 @@
+set nocompatible              " for the iMproved part
+set guicursor=                " nvim: have block cursor everywhere
+
+" Syntax highlighting
+syntax enable
+
+" Position in code
+set number                    " line numbers
+set ruler                     " line_num:char_num in bottom right corner
+
+" Better tabbing (soft tabs)
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab smarttab smartindent autoindent
+set shiftround
+set breakindent
+filetype plugin indent on
+
+" save undo-trees in files
+set undofile
+set undodir=$HOME/.config/nvim/undo
+set undolevels=10000
+set undoreload=10000
+
+" Highlight search results
+set incsearch hlsearch
+set background=dark
+
+" search files in subdirectories
+set path+=**
+
+" cmd line completion
+set wildmenu
+
+" Visual
+set laststatus=2
+set noshowmode
+set cursorline
+
+" Folds
+set foldmethod=manual
+set splitbelow splitright
+
+call plug#begin()
+Plug 'itchyny/lightline.vim'
+Plug 'shirk/vim-gas'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rhysd/vim-clang-format'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'lervag/vimtex'
+call plug#end()
+
+let g:lightline = {
+            \ 'colorscheme': 'dracula'
+            \ }
+
+let g:dracula_italic = 0
+let g:dracula_colorterm = 0
+colorscheme dracula
+
+nnoremap <C-t> :NERDTreeToggle<CR>
+
+let g:clang_format#style_options = {
+            \ "IndentWidth" : "2",
+            \ "Language" : "Cpp",
+            \ "BasedOnStyle" : "Google",
+            \ "Standard" : "C++11",
+            \ "AllowShortIfStatementsOnASingleLine" : "Never",
+            \ "AllowShortLoopsOnASingleLine" : "false",
+            \ }
+autocmd FileType c,cpp ClangFormatAutoEnable
+
+" Folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent! loadview
+
+" x86
+let g:gasDisablePreproc=1
+autocmd Filetype asm setlocal ft=gas
+
+augroup black_on_save
+  autocmd!
+  autocmd BufWritePre *.py Black
+augroup end
+
+let g:vimtex_view_method = 'zathura'
