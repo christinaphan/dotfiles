@@ -6,6 +6,7 @@ My dotfiles managed via a git bare repo.
 
 * os: `Arch`
 * wm: `i3`
+* bar: `polybar`
 * compositor: `picom`
 * shell: `zsh`
 * editor: `neovim`
