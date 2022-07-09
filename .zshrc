@@ -39,22 +39,9 @@ alias ssh_davis='ssh cphan69@pc22.cs.ucdavis.edu'
 
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
-colorscript -r
+alias zathura='zathura --fork'
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/christina/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/christina/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/christina/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/christina/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+colorscript -r
 
 # zsh syntax highlighting and autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -65,3 +52,19 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/christina/.config/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/christina/.config/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/christina/.config/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/christina/.config/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
