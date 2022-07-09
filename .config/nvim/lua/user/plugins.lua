@@ -63,6 +63,7 @@ return packer.startup(function(use)
 	-- Quality of Life
 	use("lewis6991/gitsigns.nvim") -- lua version of git gutter
 	use("kyazdani42/nvim-tree.lua") -- lua version of nerd tree
+	use("akinsho/bufferline.nvim") -- bufferline / tabs visibility
 
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP

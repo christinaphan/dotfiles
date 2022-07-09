@@ -28,11 +28,19 @@ keymap("n", "<leader>f", ":Format<CR>", opts)
 -- Zen Mode (with Twilight)
 keymap("n", "<leader>z", ":ZenMode<CR>", opts)
 
+-- Bufferline (navigate buffer "tabs")
+keymap("n", "<leader>1", ":lua require('bufferline').go_to_buffer(1, true)<CR>", opts)
+keymap("n", "<leader>2", ":lua require('bufferline').go_to_buffer(2, true)<CR>", opts)
+keymap("n", "<leader>3", ":lua require('bufferline').go_to_buffer(3, true)<CR>", opts)
+keymap("n", "<leader>4", ":lua require('bufferline').go_to_buffer(4, true)<CR>", opts)
+keymap("n", "<leader>5", ":lua require('bufferline').go_to_buffer(5, true)<CR>", opts)
+keymap("n", "<leader>6", ":lua require('bufferline').go_to_buffer(6, true)<CR>", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
