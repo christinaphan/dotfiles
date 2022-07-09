@@ -19,6 +19,7 @@ zen_mode.setup({
 		},
 	},
 	plugins = {
+		options = { enabled = true, showmode = true },
 		gitsigns = { enabled = false }, -- disables git signs
 		twilight = { enabled = true },
 	},

@@ -25,6 +25,9 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Formatter
 keymap("n", "<leader>f", ":Format<CR>", opts)
 
+-- Zen Mode (with Twilight)
+keymap("n", "<leader>z", ":ZenMode<CR>", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
