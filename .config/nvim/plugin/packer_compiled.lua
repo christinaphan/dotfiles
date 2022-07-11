@@ -174,6 +174,11 @@ _G.packer_plugins = {
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/vim-gas",
     url = "https://github.com/Shirk/vim-gas"
   },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/home/christina/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
+  },
   ["zen-mode.nvim"] = {
     loaded = true,
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",

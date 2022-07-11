@@ -15,7 +15,7 @@ nvim_tree.setup({
 		custom = { ".git", "__pycahce__" },
 		exclude = { ".gitignore" },
 	},
-	update_cwd = true,
+	update_cwd = false,
 	renderer = {
 		add_trailing = true,
 		highlight_opened_files = "all",
@@ -50,7 +50,7 @@ nvim_tree.setup({
 	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = true,
+		update_cwd = false,
 		ignore_list = {},
 	},
 	git = {
