@@ -6,6 +6,7 @@ My dotfiles managed via a git bare repo.
 
 * os: `Arch`
 * wm: `i3`
+* dm: `lightDM`
 * compositor: `picom`
 * shell: `zsh`
 * audio: `pipewire`
