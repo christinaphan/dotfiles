@@ -10,7 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 exec_always --no-startup-id picom --experimental-backends -b
-exec_always --no-startup-id feh --recursive --bg-fill --randomize ~/Pictures/wallpapers/* &
+exec_always --no-startup-id feh --no-fehbg --recursive --bg-fill --randomize ~/Pictures/wallpapers/* &
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 exec_always --no-startup-id autotiling &
 exec_always --no-startup-id dunst &

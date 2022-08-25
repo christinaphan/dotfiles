@@ -1,3 +1,4 @@
+ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 /usr/bin/pipewire &
 /usr/bin/pipewire-pulse &
 /usr/bin/wireplumber &
