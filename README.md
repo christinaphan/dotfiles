@@ -16,3 +16,4 @@ My dotfiles managed via a git bare repo.
 * notifications: `dunst`
 * browser: `firefox`
 * pdf reader: `zathura`
+* wallpaper: `feh`
