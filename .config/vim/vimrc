@@ -1,0 +1,97 @@
+set nocompatible              " for the iMproved part
+
+" XDG compliance
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+
+" Syntax highlighting
+syntax enable
+
+" Position in code
+set number                    " line numbers
+set ruler                     " line_num:char_num in bottom right corner
+
+" Better tabbing (soft tabs)
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab smarttab smartindent autoindent
+set shiftround
+set breakindent
+filetype plugin indent on
+
+" Highlight search results
+set incsearch hlsearch
+
+" cmd line completion
+set wildmenu
+
+" Visual
+set laststatus=2
+set noshowmode " already using lightline, so don't need to see --INSERT-- and stuff 
+set cursorline " highlights current line
+
+" Folds
+set foldmethod=manual
+set splitbelow splitright
+
+call plug#begin('~/.config/vim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'shirk/vim-gas'
+Plug 'rhysd/vim-clang-format'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+call plug#end()
+
+" colorscheme
+set background=dark
+let g:lightline = {
+            \ 'colorscheme': 'dracula'
+            \ }
+
+let g:dracula_italic = 0
+let g:dracula_colorterm = 0
+colorscheme dracula
+
+let mapleader = " "
+let maplocalleader = " "
+nnoremap <leader>e :NERDTreeToggle<CR>
+
+" Clean up whitespace on save
+"autocmd FileType c,cpp autocmd BufWritePre <buffer> %s/\s\+$//e
+
+let g:clang_format#style_options = {
+            \ "IndentWidth" : "2",
+            \ "Language" : "Cpp",
+            \ "BasedOnStyle" : "Google",
+            \ "Standard" : "C++11",
+            \ "AllowShortIfStatementsOnASingleLine" : "Never",
+            \ "AllowShortLoopsOnASingleLine" : "false",
+            \ }
+autocmd FileType c,cpp ClangFormatAutoEnable
+
+" Folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
+" x86
+let g:gasDisablePreproc=1
+autocmd Filetype asm setlocal ft=gas
+
+augroup black_on_save
+  autocmd!
+  autocmd BufWritePre *.py Black
+augroup end
