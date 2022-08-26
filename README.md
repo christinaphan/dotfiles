@@ -10,6 +10,7 @@ My dotfiles managed via a git bare repo.
 
 * os: `Arch`
 * wm: `i3`
+* bar: `polybar`
 * dm: `lightDM`
 * compositor: `picom`
 * shell: `zsh`
