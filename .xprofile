@@ -4,3 +4,5 @@ xset -dpms
 xset s noblank
 # faster key repeat and delay
 xset r rate 210 40
+# 144Hz refresh rate
+xrandr --output DP-0 --mode 1920x1080 --rate 144
