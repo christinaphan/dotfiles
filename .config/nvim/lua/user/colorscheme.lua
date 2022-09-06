@@ -1,9 +1,9 @@
-vim.opt.background = "light"
+vim.opt.background = "dark"
 require("gruvbox").setup({
 	contrast = "soft",
 })
 
-local colorscheme = "dracula"
+local colorscheme = "tokyonight"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then

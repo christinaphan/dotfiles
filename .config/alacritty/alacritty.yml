@@ -1,8 +1,8 @@
 import:
-  - ~/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/tokyo_night_storm.yml
 
 env:
-  TERM: alacritty
+    TERM: xterm-256color
 
 window:
   opacity: 1
@@ -46,4 +46,3 @@ selection:
   save_to_clipboard: true
 
 live_config_reload: true
-

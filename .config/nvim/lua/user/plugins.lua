@@ -52,8 +52,8 @@ return packer.startup(function(use)
 	-- Colorschemes
 	use("dracula/vim")
 	use("ellisonleao/gruvbox.nvim")
-	use("haystackandroid/strawberry")
 	use("arcticicestudio/nord-vim")
+  use("folke/tokyonight.nvim")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -77,9 +77,6 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
-
-	-- asm syntax highlighting
-	use("Shirk/vim-gas")
 
 	-- zen mode
 	use("folke/zen-mode.nvim")
