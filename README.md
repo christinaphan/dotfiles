@@ -15,6 +15,7 @@ My dotfiles managed via a git bare repo.
 * compositor: `picom`
 * shell: `zsh`
 * audio: `pipewire`
+* vpn: `openconnect`
 * editor: `neovim`
 * terminal: `alacritty`
 * terminal font: `Source Code Pro`

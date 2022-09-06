@@ -15,6 +15,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export LESSHISTFILE=-
 
 # exports
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export ZDOTDIR="$HOME"/.config/zsh
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -24,3 +26,4 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export PYTHONSTARTUP="/etc/python/pythonrc"
+. "/home/christina/.local/share/cargo/env"
