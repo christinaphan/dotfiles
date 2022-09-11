@@ -46,23 +46,15 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("lewis6991/impatient.nvim") -- speed up load times
 
-	-- Lualine
-	use("nvim-lualine/lualine.nvim") -- lua version of lightline.vim
-
 	-- Colorschemes
 	use("dracula/vim")
 	use("ellisonleao/gruvbox.nvim")
 	use("arcticicestudio/nord-vim")
-  use("folke/tokyonight.nvim")
-
-	-- cmp plugins
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("hrsh7th/cmp-nvim-lsp") -- lsp completions
+	use("folke/tokyonight.nvim")
+	use("shaunsingh/nord.nvim")
 
 	-- Quality of Life
+	use("nvim-lualine/lualine.nvim") -- lua version of lightline.vim
 	use("lewis6991/gitsigns.nvim") -- lua version of git gutter
 	use("kyazdani42/nvim-tree.lua") -- lua version of nerd tree
 	use("akinsho/bufferline.nvim") -- bufferline / tabs visibility
@@ -71,6 +63,13 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+
+	-- cmp plugins
+	use("hrsh7th/nvim-cmp") -- The completion plugin
+	use("hrsh7th/cmp-buffer") -- buffer completions
+	use("hrsh7th/cmp-path") -- path completions
+	use("hrsh7th/cmp-cmdline") -- cmdline completions
+	use("hrsh7th/cmp-nvim-lsp") -- lsp completions
 
 	-- Treesitter
 	use({
