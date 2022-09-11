@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/nord-vim",
     url = "https://github.com/arcticicestudio/nord-vim"
   },
+  ["nord.nvim"] = {
+    loaded = true,
+    path = "/home/christina/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    url = "https://github.com/shaunsingh/nord.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/null-ls.nvim",

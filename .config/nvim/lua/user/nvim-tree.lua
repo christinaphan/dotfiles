@@ -12,7 +12,7 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
 	filters = {
-		custom = { ".git", "__pycahce__" },
+		custom = { ".git", "__pycache__" },
 		exclude = { ".gitignore" },
 	},
 	update_cwd = false,
@@ -36,6 +36,7 @@ nvim_tree.setup({
 			},
 			glyphs = {
 				default = " ",
+				symlink = " ",
 				folder = {
 					default = "",
 					open = "",

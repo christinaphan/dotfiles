@@ -25,5 +25,7 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+export CONDARC="$XDG_CONFIG_HOME/conda/condarc"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export PYTHONSTARTUP="/etc/python/pythonrc"
 . "/home/christina/.local/share/cargo/env"
