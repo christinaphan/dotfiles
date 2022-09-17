@@ -49,7 +49,6 @@ return packer.startup(function(use)
 	-- Colorschemes
 	use("dracula/vim")
 	use("ellisonleao/gruvbox.nvim")
-	use("arcticicestudio/nord-vim")
 	use("folke/tokyonight.nvim")
 	use("shaunsingh/nord.nvim")
 
