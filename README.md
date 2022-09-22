@@ -24,3 +24,4 @@ My dotfiles managed via a git bare repo.
 * browser: `firefox`
 * pdf reader: `zathura`
 * wallpaper: `feh`
+* notes: `obsidian`
