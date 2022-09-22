@@ -24,7 +24,7 @@ alias ls='lsd'
 # aliases
 alias g++='g++ --std=c++14 -Wall -Werror' 
 alias cpplint='cpplint --filter=-legal/copyright'
-alias ssh_davis='ssh cphan69@pc22.cs.ucdavis.edu'
+alias ssh_davis='ssh cphan69@pc31.cs.ucdavis.edu'
 alias ssh_rostam='ssh cphan69@rostam.idav.ucdavis.edu'
 alias ssh_sohrab='ssh cphan69@sohrab.idav.ucdavis.edu'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
