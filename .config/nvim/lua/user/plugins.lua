@@ -51,6 +51,7 @@ return packer.startup(function(use)
 	use("ellisonleao/gruvbox.nvim")
 	use("folke/tokyonight.nvim")
 	use("shaunsingh/nord.nvim")
+	use("NLKNguyen/papercolor-theme")
 
 	-- Quality of Life
 	use("nvim-lualine/lualine.nvim") -- lua version of lightline.vim
