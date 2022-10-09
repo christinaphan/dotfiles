@@ -52,6 +52,7 @@ return packer.startup(function(use)
 	use("folke/tokyonight.nvim")
 	use("shaunsingh/nord.nvim")
 	use("NLKNguyen/papercolor-theme")
+	use({ "lalitmee/cobalt2.nvim", requires = "tjdevries/colorbuddy.nvim" })
 
 	-- Quality of Life
 	use("nvim-lualine/lualine.nvim") -- lua version of lightline.vim

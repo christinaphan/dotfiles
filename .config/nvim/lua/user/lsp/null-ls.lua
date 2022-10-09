@@ -15,7 +15,7 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.clang_format.with({
 			extra_args = {
-				"--style={BasedOnStyle: Google, IndentWidth: 2, Language: Cpp, Standard: C++11, AllowShortIfStatementsOnASingleLine: Never, AllowShortLoopsOnASingleLine: false}",
+				"--style={BasedOnStyle: Google, IndentWidth: 2, Language: Cpp, Standard: C++11, AllowShortIfStatementsOnASingleLine: Never, AllowShortLoopsOnASingleLine: false, PointerAlignment: Left, DerivePointerAlignment: false}",
 			},
 		}),
 	},
