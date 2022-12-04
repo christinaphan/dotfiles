@@ -9,6 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+exec_always --no-startup-id picom &
 exec_always --no-startup-id udiskie &
 exec_always --no-startup-id feh --no-fehbg --recursive --bg-fill --randomize ~/Pictures/wallpapers/* &
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
