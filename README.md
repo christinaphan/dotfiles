@@ -11,7 +11,7 @@ My dotfiles managed via a git bare repo.
 * os: `Arch`
 * wm: `i3`
 * bar: `polybar`
-* dm: `lightDM`
+* dm: `SDDM`
 * compositor: `picom`
 * shell: `zsh`
 * audio: `pipewire`
