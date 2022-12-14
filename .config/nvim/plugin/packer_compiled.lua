@@ -184,11 +184,6 @@ _G.packer_plugins = {
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["split-term.vim"] = {
-    loaded = true,
-    path = "/home/christina/.local/share/nvim/site/pack/packer/start/split-term.vim",
-    url = "https://github.com/vimlab/split-term.vim"
-  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
@@ -203,6 +198,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/christina/.local/share/nvim/site/pack/packer/start/vim",
     url = "https://github.com/dracula/vim"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/home/christina/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   },
   ["zen-mode.nvim"] = {
     loaded = true,

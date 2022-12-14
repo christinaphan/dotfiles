@@ -58,3 +58,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# VimTeX Zathura inverse search
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket

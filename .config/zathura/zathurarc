@@ -12,6 +12,9 @@ map K zoom in
 map J zoom out
 map i recolor
 
+set synctex true
+set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
+
 set notification-error-bg       "#2E3440"
 set notification-error-fg       "#BF616A"
 set notification-warning-bg     "#2E3440"
@@ -48,5 +51,6 @@ set render-loading-fg           "#434C5E"
 
 set recolor-lightcolor          "#2E3440"
 set recolor-darkcolor           "#ECEFF4"
-set recolor                     "true"
+set recolor                     "false"
+
 set font "SauceCodePro Nerd Font Mono"
