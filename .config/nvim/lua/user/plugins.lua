@@ -82,7 +82,8 @@ return packer.startup(function(use)
 	use("folke/zen-mode.nvim")
 	use("folke/twilight.nvim")
 
-	use("vimlab/split-term.vim")
+	-- LaTeX
+	use("lervag/vimtex")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
