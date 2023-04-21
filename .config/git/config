@@ -1,0 +1,41 @@
+# This is Git's per-user configuration file.
+[user]
+    name = Christina Phan
+    email = 88528865+christinaphan@users.noreply.github.com
+[init]
+    defaultBranch = main
+[color]
+  diff = auto
+  status = auto
+[color "branch"]
+  current = cyan
+  local = green
+  remote = red
+[color "diff"]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
+[color "status"]
+  added = cyan
+  branch = cyan
+  changed = magenta
+  deleted = red
+  untracked = yellow
+[core]
+    editor = /opt/homebrew/bin/nvim
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[push]
+    autoSetupRemote = true
+[alias]
+  plog = log --all --decorate --oneline --graph
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

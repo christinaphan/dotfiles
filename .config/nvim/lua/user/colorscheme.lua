@@ -3,10 +3,12 @@ require("gruvbox").setup({
 	contrast = "soft",
 })
 
-require("colorbuddy").colorscheme("cobalt2")
-local colorscheme = "cobalt2"
+-- Lua
+-- require("onedark").setup()
+local colorscheme = "tokyonight-storm"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+vim.opt.background = "light"
 if not status_ok then
 	vim.notify("colorscheme " .. colorscheme .. " not found!")
 	return
