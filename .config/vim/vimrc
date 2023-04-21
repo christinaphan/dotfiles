@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible              " for the iMproved part
 
 " XDG compliance
 set runtimepath^=$XDG_CONFIG_HOME/vim
@@ -18,78 +18,42 @@ set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
 
 if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
 
-" --- Visual Enhancments --- "
-syntax enable                 " syntax highlighting
-set laststatus=2 " for lightline
-set noshowmode " already using lightline, so don't need to see --INSERT-- and stuff 
-" set cursorline " highlights current line (i use this ONLY with a
-" colorscheme)
+" Syntax highlighting
+syntax enable
 
-" --- Positioning --- "
-set number                    " enable line numbers 
-set ruler                     " enable char_num (of row)
+" Position in code
+set number                    " line numbers
+set ruler                     " line_num:char_num in bottom right corner
 
-" --- Indentation --- "
-" i prefer tab = 2 spaces
+" Better tabbing (soft tabs)
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab smarttab smartindent autoindent
-set shiftround               " moving text with >,< will always be a tab distance
-set breakindent              " wrapped lines will still be visually indented 
-filetype plugin indent on    " follow indentation rules dictated by plugins / indent/ config files when possible
+set shiftround
+set breakindent
+filetype plugin indent on
 
-" --- Searching --- "
-set incsearch hlsearch      " show search results as typing AND highlight 
+" Highlight search results
+set incsearch hlsearch
 
-" --- Bufferline --- "
-set wildmenu                " bufferline completion (like tabbing in terminal)
+" cmd line completion
+set wildmenu
 
-" --- Folds --- "
-" you can visually highlight a selection of text
-" then, press <z-f> to create a fold 
-" press <z-d> over a folded selection to delete a fold
-" press <z-o> over a closed fold to open it 
-" press <z-c> over a opened fold to close it
-set foldmethod=manual         " manual folds only (my pref)
-autocmd BufWinLeave *.* mkview " save folds even after exit
-autocmd BufWinEnter *.* silent loadview " save folds even after exit
+" Visual
+set laststatus=2
+set noshowmode " already using lightline, so don't need to see --INSERT-- and stuff 
+set cursorline " highlights current line
 
-" --- Splits --- "
-"  split current file vertically with :vs
-"  split current file horizontally with :sp
-"  open diff file vertically with :vs <file_name>
-"  open diff file horizontally with :sp <file_name>
-"  open a terminal instance with :term (splits right,bottom)
-"  navigate left/right between splits with <CTRL+w+h> or <CTRL+w+l>
-"  navigate up/down between splits with <CTRL+w+k> or <CTRL+w+j>
-set splitbelow splitright    " opening a split prefers bottom/right
+" Folds
+set foldmethod=manual
+set splitbelow splitright
 
-" ---  Keymaps --- "
-" inoremap kj <Esc>         " pressing kj in INSERT MODE will actually be <Esc> (i force my keyboard to have escape at capslock, so i don't use kj)
-" --- Resize splits with arrows
-" pressing <CTRL+arrow_key> will resize split in that direction
-nnoremap <silent> <C-Up> :silent! resize +2<CR>
-nnoremap <silent> <C-Down> :silent! resize -2<CR>
-nnoremap <silent> <C-Left> :silent! vertical resize +2<CR>
-nnoremap <silent> <C-Right> :silent! vertical resize -2<CR>
-
-" --- Shifting text
-" Shift visually selected text via > and < will stay in indent mode
-vnoremap <silent> < <gv
-vnoremap <silent> > >gv
-" Shift visually selected text with J (caps) and K (caps) will move it up/down
-xnoremap <silent> J :silent! move'>+<CR>gv=gv
-xnoremap <silent> K :silent! move-2<CR>gv=gv
-
-" --- Plugins --- "
-" i use vim-plug as my pluggin manager
-" see: https://github.com/junegunn/vim-plug
-call plug#begin()
-Plug 'itchyny/lightline.vim'             " Lean & mean status line
-Plug 'dracula/vim', { 'as': 'dracula' }  " dracula colortheme
-Plug 'shirk/vim-gas'                     " better X86 syntax highlighting
-Plug 'rhysd/vim-clang-format'            " clang formater
-Plug 'psf/black', { 'branch': 'stable' } " python (black) formatter
-Plug 'airblade/vim-gitgutter'            " signify changed lines in files tracked by git
-Plug 'scrooloose/nerdtree'               " file explorer
+call plug#begin('~/.config/vim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'shirk/vim-gas'
+Plug 'rhysd/vim-clang-format'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " colorscheme
@@ -106,7 +70,9 @@ let mapleader = " "
 let maplocalleader = " "
 nnoremap <leader>e :NERDTreeToggle<CR>
 
-" clang format
+" Clean up whitespace on save
+"autocmd FileType c,cpp autocmd BufWritePre <buffer> %s/\s\+$//e
+
 let g:clang_format#style_options = {
             \ "IndentWidth" : "2",
             \ "Language" : "Cpp",
@@ -117,11 +83,14 @@ let g:clang_format#style_options = {
             \ }
 autocmd FileType c,cpp ClangFormatAutoEnable
 
-" x86 syntax highlighting
+" Folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
+" x86
 let g:gasDisablePreproc=1
 autocmd Filetype asm setlocal ft=gas
 
-" python formatter
 augroup black_on_save
   autocmd!
   autocmd BufWritePre *.py Black

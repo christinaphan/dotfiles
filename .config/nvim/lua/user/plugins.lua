@@ -44,6 +44,7 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+	use({ "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347" }) -- Autopairs, integrates with both cmp and treesitter
 	use("lewis6991/impatient.nvim") -- speed up load times
 
 	-- Colorschemes
@@ -52,18 +53,20 @@ return packer.startup(function(use)
 	use("folke/tokyonight.nvim")
 	use("shaunsingh/nord.nvim")
 	use("NLKNguyen/papercolor-theme")
-	use({ "lalitmee/cobalt2.nvim", requires = "tjdevries/colorbuddy.nvim" })
+	use("monsonjeremy/onedark.nvim")
 
 	-- Quality of Life
 	use("nvim-lualine/lualine.nvim") -- lua version of lightline.vim
 	use("lewis6991/gitsigns.nvim") -- lua version of git gutter
-	use("kyazdani42/nvim-tree.lua") -- lua version of nerd tree
+	use("nvim-tree/nvim-tree.lua") -- lua version of nerd tree
 	use("akinsho/bufferline.nvim") -- bufferline / tabs visibility
 
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	use({ "williamboman/mason.nvim" }) -- simple to use language server installer
+	use({ "williamboman/mason-lspconfig.nvim" })
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -82,7 +85,25 @@ return packer.startup(function(use)
 	use("folke/zen-mode.nvim")
 	use("folke/twilight.nvim")
 
-	-- LaTeX
+	-- tmux
+	use({
+		"alexghergh/nvim-tmux-navigation",
+		config = function()
+			require("nvim-tmux-navigation").setup({
+				disable_when_zoomed = true, -- defaults to false
+				keybindings = {
+					left = "<C-h>",
+					down = "<C-j>",
+					up = "<C-k>",
+					right = "<C-l>",
+					last_active = "<C-\\>",
+					next = "<C-Space>",
+				},
+			})
+		end,
+	})
+
+	-- VimTeX
 	use("lervag/vimtex")
 
 	-- Automatically set up your configuration after cloning packer.nvim
