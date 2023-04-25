@@ -45,3 +45,9 @@ vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 vim.cmd([[set path+=**]]) -- search files in subdirectories
 vim.cmd([[set undodir=/Users/christina/.config/nvim/undo]]) -- save undodir in ~/.config/nvim
+
+-- Remove leading and trailing whitespace on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	pattern = { "*" },
+	command = [[%s/\s\+$//e]],
+})
