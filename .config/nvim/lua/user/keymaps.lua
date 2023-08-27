@@ -22,9 +22,6 @@ vim.g.maplocalleader = " "
 -- File explorer
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
--- Formatter
-keymap("n", "<leader>f", ":Format<CR>", opts)
-
 -- Zen Mode (with Twilight)
 keymap("n", "<leader>z", ":ZenMode<CR>", opts)
 
@@ -45,6 +42,12 @@ keymap("n", "<A-Right>", ":vertical resize -2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Telescope
+keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
+keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<CR>", opts)
+keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
+keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
 
 -- Insert --
 
