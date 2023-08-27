@@ -34,6 +34,6 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 })
-require("keybinds")
-require("diagnostics")
-require("null_ls")
+require("user.mason.keybinds")
+require("user.mason.diagnostics")
+require("user.mason.null-ls")
