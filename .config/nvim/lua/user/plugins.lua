@@ -1,92 +1,111 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
+-- Automatically install lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
 		"git",
 		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
 	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
-
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
+local plugins = {
+	-- the colorscheme should be available when starting Neovim
+	{
+		"folke/tokyonight.nvim",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			require("user.colorscheme")
 		end,
 	},
-})
-
--- Install your plugins here
-return packer.startup(function(use)
-	-- Essentials
-	use("wbthomason/packer.nvim") -- Have packer manage itself
-	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-	use({ "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347" }) -- Autopairs, integrates with both cmp and treesitter
-	use("lewis6991/impatient.nvim") -- speed up load times
-
-	-- Colorschemes
-	use("folke/tokyonight.nvim")
-
-	-- Quality of Life
-	use("nvim-lualine/lualine.nvim") -- lua version of lightline.vim
-	use("lewis6991/gitsigns.nvim") -- lua version of git gutter
-	use("nvim-tree/nvim-tree.lua") -- lua version of nerd tree
-	use("akinsho/bufferline.nvim") -- bufferline / tabs visibility
-	use({
+	{
+		"nvim-lualine/lualine.nvim",
+		lazy = false,
+		config = function()
+			require("user.lualine")
+		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		lazy = false,
+		config = function()
+			require("user.gitsigns")
+		end,
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
+		lazy = false,
+		config = function()
+			require("user.nvim-tree")
+		end,
+	},
+	{
+		"akinsho/bufferline.nvim",
+		lazy = false,
+		config = function()
+			require("user.bufferline")
+		end,
+	},
+	{
 		"m4xshen/hardtime.nvim",
-		requires = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-	}) -- encourage good habits
-
-	-- LSP
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-	use("neovim/nvim-lspconfig")
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("jay-babu/mason-null-ls.nvim")
-
-	-- cmp plugins
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("hrsh7th/cmp-nvim-lsp") -- lsp completions
-
-	-- Treesitter
-	use({
+		lazy = false,
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("user.hardtime")
+		end,
+	},
+	{
+		"williamboman/mason.nvim",
+		lazy = false,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+		lazy = false,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false,
+	},
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		lazy = false,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"jose-elias-alvarez/null-ls.nvim",
+		},
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+		},
+		config = function()
+			require("user.cmp")
+		end,
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-
-	-- zen mode
-	use("folke/zen-mode.nvim")
-	use("folke/twilight.nvim")
-
-	-- tmux
-	use({
+		lazy = false,
+		build = ":TSUpdate",
+	},
+	{
 		"alexghergh/nvim-tmux-navigation",
+		lazy = false,
+		priority = 1000,
 		config = function()
 			require("nvim-tmux-navigation").setup({
 				disable_when_zoomed = true, -- defaults to false
@@ -100,11 +119,20 @@ return packer.startup(function(use)
 				},
 			})
 		end,
-	})
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("user.telescope")
+		end,
+	},
+}
 
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
+local opts = {
+	defaults = {
+		lazy = true,
+	},
+	lockfile = vim.fn.stdpath("config") .. "/plugin/lazy-lock.json",
+}
+require("lazy").setup(plugins, opts)

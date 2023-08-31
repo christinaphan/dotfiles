@@ -1,7 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
-	automatic_installation = true,
 	-- Default handler
 	function(server_name) -- default handler (optional)
 		require("lspconfig")[server_name].setup({})
