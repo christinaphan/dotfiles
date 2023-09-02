@@ -28,8 +28,28 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # powerlevel10k
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
+# CUnit (and other external C libraries installed via brew)
+export CPATH=/opt/homebrew/include
+export LIBRARY_PATH=/opt/homebrew/lib
+
+# xdg-ninja
+export XDG_RUNTIME_DIR=/run/user/501
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+export ZDOTDIR="$HOME"/.config/zsh
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
+export CABAL_DIR="$XDG_DATA_HOME"/cabal
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export STACK_ROOT="$XDG_DATA_HOME"/stack
+export GHCUP_USE_XDG_DIRS=true
+
+
+
+
 
 # To customize prompt, run `p10k configure`
 [[ ! -f ${ZDOTDIR:-~}/.p10k.zsh ]] || source ${ZDOTDIR:-~}/.p10k.zsh
-
-[ -f "/Users/christina/.local/share/ghcup/env" ] && source "/Users/christina/.local/share/ghcup/env" # ghcup-env

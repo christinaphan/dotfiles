@@ -38,7 +38,7 @@ local plugins = {
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
-		lazy = false,
+		cmd = "NvimTreeToggle",
 		config = function()
 			require("user.nvim-tree")
 		end,
@@ -125,6 +125,24 @@ local plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("user.telescope")
+		end,
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		cmd = "ColorizerAttachToBuffer",
+	},
+	{
+		"neovimhaskell/haskell-vim",
+		ft = "haskell",
+		init = function()
+			vim.g.haskell_indent_disable = 1
+			vim.g.haskell_enable_quantification = 1
+			vim.g.haskell_enable_recursivedo = 1
+			vim.g.haskell_enable_arrowsyntax = 1
+			vim.g.haskell_enable_pattern_synonyms = 1
+			vim.g.haskell_enable_typeroles = 1
+			vim.g.haskell_enable_static_pointers = 1
+			vim.g.haskell_backpack = 1
 		end,
 	},
 }

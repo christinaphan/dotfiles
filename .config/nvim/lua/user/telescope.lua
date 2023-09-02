@@ -18,7 +18,7 @@ telescope.setup({
 
 local builtin = require("telescope.builtin")
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>ff", builtin.find_files, opts)
+vim.keymap.set("n", "<leader>ff", ":lua require('telescope.builtin').find_files({hidden=true})<CR>", opts)
 vim.keymap.set("n", "<leader>fs", builtin.live_grep, opts)
 vim.keymap.set("n", "<leader>fb", builtin.buffers, opts)
 
