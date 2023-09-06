@@ -32,6 +32,20 @@ require("mason-lspconfig").setup_handlers({
 			},
 		})
 	end,
+	["html"] = function()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		require("lspconfig").html.setup({
+			capabilities = capabilities,
+		})
+	end,
+	["cssls"] = function()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		require("lspconfig").cssls.setup({
+			capabilities = capabilities,
+		})
+	end,
 })
 require("user.mason.keybinds")
 require("user.mason.diagnostics")
