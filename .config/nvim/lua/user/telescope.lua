@@ -14,22 +14,12 @@ telescope.setup({
 			},
 		},
 	},
-})
-
-local builtin = require("telescope.builtin")
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<leader>ff", ":lua require('telescope.builtin').find_files({hidden=true})<CR>", opts)
-vim.keymap.set("n", "<leader>fs", builtin.live_grep, opts)
-vim.keymap.set("n", "<leader>fb", builtin.buffers, opts)
-
-local theme = require("telescope.themes")
-local function spell_check()
-	builtin.spell_suggest(theme.get_cursor({
-		prompt_title = "",
-		layout_config = {
-			height = 0.25,
-			width = 0.25,
+	pickers = {
+		find_files = {
+			find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+			layout_config = {
+				height = 0.70,
+			},
 		},
-	}))
-end
-vim.keymap.set("n", "<leader>ss", spell_check, opts)
+	},
+})

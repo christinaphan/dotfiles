@@ -13,10 +13,13 @@ require("mason-null-ls").setup({
 		stylua = function(source_name, methods)
 			null_ls.register(null_ls.builtins.formatting.stylua)
 		end,
+		markdownlint = function(source_name, methods)
+			null_ls.register(null_ls.builtins.formatting.markdownlint)
+		end,
 	},
 })
 null_ls.setup({
-	debug = false,
+	-- debug = false,
 	-- formatting on save
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
