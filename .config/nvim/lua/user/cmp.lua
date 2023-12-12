@@ -8,8 +8,6 @@ if not luasnip_status_ok then
 	return
 end
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 local has_words_before = function()
 	unpack = unpack or table.unpack
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -54,7 +52,7 @@ local kind_icons = {
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	mapping = {

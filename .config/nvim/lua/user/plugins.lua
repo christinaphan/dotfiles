@@ -15,23 +15,27 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	-- the colorscheme should be available when starting Neovim
 	{
-		"folke/tokyonight.nvim",
+		"rose-pine/neovim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
+		name = "rose-pine",
+		init = function()
+			require("rose-pine").setup()
+		end,
 		config = function()
 			require("user.colorscheme")
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		lazy = false,
+		event = "VeryLazy",
 		config = function()
 			require("user.lualine")
 		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		lazy = false,
+		event = "VeryLazy",
 		config = function()
 			require("user.gitsigns")
 		end,
@@ -45,40 +49,28 @@ local plugins = {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		lazy = false,
+		event = "VeryLazy",
 		config = function()
 			require("user.bufferline")
 		end,
 	},
 	{
-		"m4xshen/hardtime.nvim",
-		lazy = false,
-		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
-			require("user.hardtime")
-		end,
-	},
-	{
 		"williamboman/mason.nvim",
-		lazy = false,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
-		lazy = false,
+		cmd = "Mason",
 	},
 	{
 		"neovim/nvim-lspconfig",
-		lazy = false,
+		event = { "VeryLazy" },
+		dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+		event = { "VeryLazy" },
 		dependencies = { "nvim-lua/plenary.nvim" },
-		lazy = false,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "VeryLazy" },
 		dependencies = {
 			"williamboman/mason.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
@@ -92,6 +84,7 @@ local plugins = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
+			"L3MON4D3/LuaSnip",
 		},
 		config = function()
 			require("user.cmp")
@@ -104,11 +97,17 @@ local plugins = {
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
 		dependencies = { "rafamadriz/friendly-snippets" },
+		config = function()
+			require("user.luasnip")
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		lazy = false,
+		event = { "VeryLazy" },
 		build = ":TSUpdate",
+		config = function()
+			require("user.treesitter")
+		end,
 	},
 	{
 		"alexghergh/nvim-tmux-navigation",
@@ -136,22 +135,23 @@ local plugins = {
 		end,
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
-		cmd = "ColorizerAttachToBuffer",
+		"lervag/vimtex",
+		ft = "tex",
+		init = function()
+			vim.g.tex_flavor = "latex"
+			vim.g.vimtex_view_method = "skim"
+			vim.g.vimtex_view_skim_sy = 1
+			vim.g.vimtex_view_skim_activate = 1
+		end,
 	},
 	{
-		"neovimhaskell/haskell-vim",
-		ft = "haskell",
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
 		init = function()
-			vim.g.haskell_indent_disable = 1
-			vim.g.haskell_enable_quantification = 1
-			vim.g.haskell_enable_recursivedo = 1
-			vim.g.haskell_enable_arrowsyntax = 1
-			vim.g.haskell_enable_pattern_synonyms = 1
-			vim.g.haskell_enable_typeroles = 1
-			vim.g.haskell_enable_static_pointers = 1
-			vim.g.haskell_backpack = 1
+			vim.g.mkdp_filetypes = { "markdown" }
 		end,
+		ft = { "markdown" },
 	},
 }
 

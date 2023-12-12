@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -21,9 +19,6 @@ vim.g.maplocalleader = " "
 -- Normal --
 -- File explorer
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- Zen Mode (with Twilight)
-keymap("n", "<leader>z", ":ZenMode<CR>", opts)
 
 -- Bufferline (navigate buffer "tabs")
 keymap("n", "<leader>1", ":lua require('bufferline').go_to_buffer(1, true)<CR>", opts)
@@ -47,7 +42,18 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
 keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<CR>", opts)
 keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
-keymap("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<CR>", opts)
+local builtin = require("telescope.builtin")
+local theme = require("telescope.themes")
+local function spell_suggest()
+	builtin.spell_suggest(theme.get_cursor({
+		prompt_title = "",
+		layout_config = {
+			height = 0.25,
+			width = 0.25,
+		},
+	}))
+end
+vim.keymap.set("n", "<leader>ss", spell_suggest, opts)
 
 -- Insert --
 

@@ -38,6 +38,12 @@ vim.opt.guifont = "Source Code Pro:h12" -- the font used in graphical neovim app
 vim.opt.guicursor = "a:block" -- always have block mode cursor
 vim.opt.wildmenu = true -- enable cmd line completion
 vim.opt.foldmethod = "manual" -- enable manual folds
+vim.opt.textwidth = 80 -- max 80 chars per line
+vim.cmd([[augroup AutoSaveFolds
+autocmd!
+autocmd BufWinLeave ?* mkview
+autocmd BufWinEnter ?* silent! loadview
+augroup END]])
 
 vim.opt.shortmess:append("c")
 
@@ -45,7 +51,6 @@ vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 vim.cmd([[set path+=**]]) -- search files in subdirectories
-vim.cmd([[set undodir=/Users/christina/.config/nvim/undo]]) -- save undodir in ~/.config/nvim
 
 -- Remove leading and trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
