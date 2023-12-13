@@ -1,5 +1,2 @@
 vim.loader.enable()
 require("user")
--- require("user.plugins")
--- require("user.keymaps")
--- require("user.mason")
