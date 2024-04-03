@@ -36,7 +36,7 @@ return {
       mode = "n",
     },
     {
-      "<leader>fg",
+      "<leader>fs",
       function()
         return require("telescope.builtin").live_grep()
       end,

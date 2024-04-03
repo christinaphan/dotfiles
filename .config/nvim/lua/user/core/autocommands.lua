@@ -28,7 +28,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
 })
-
--- Fixes weird right padding gap ?
--- see: https://github.com/aryzing/dotfiles/blob/main/nvim/.config/nvim/lua/user/04_theme.lua
-vim.cmd("highlight clear StatusLine")

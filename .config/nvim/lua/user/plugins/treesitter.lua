@@ -4,11 +4,24 @@ return {
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "lua", "c", "vim", "vimdoc", "latex", "python", "html", "css" },
+      ensure_installed = {
+        "bash",
+        "lua",
+        "c",
+        "cpp",
+        "vim",
+        "vimdoc",
+        "latex",
+        "python",
+        "html",
+        "css",
+        "markdown",
+        "markdown_inline",
+      },
       sync_install = false,
       ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
       highlight = {
-        enable = true,            -- false will disable the whole extension
+        enable = true,               -- false will disable the whole extension
         disable = function(lang, buf)
           if lang == "tex" or lang == "latex" then
             return true
