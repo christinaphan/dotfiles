@@ -29,18 +29,16 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export PYTHONSTARTUP="/etc/python/pythonrc"
-export XDG_RUNTIME_DIR=/run/user/501
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export ZDOTDIR="$HOME"/.config/zsh
-export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export CABAL_CONFIG="$XDG_CONFIG_HOME"/cabal/config
 export CABAL_DIR="$XDG_DATA_HOME"/cabal
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export STACK_ROOT="$XDG_DATA_HOME"/stack
 export GHCUP_USE_XDG_DIRS=true
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export GEM_HOME="${XDG_DATA_HOME}"/gem
+export GEM_SPEC_CACHE="${XDG_CACHE_HOME}"/gem
 . "/Users/christina/.local/share/cargo/env"
