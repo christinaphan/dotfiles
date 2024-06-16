@@ -44,6 +44,6 @@ return {
         end
       end,
     },
-    ft = { "python", "c", "cpp", "lua" }
+    ft = { "python", "c", "cpp", "lua", "html", "css", "javascript", "typescript", "java" }
   }
 }

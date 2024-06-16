@@ -17,6 +17,7 @@ return {
         "css",
         "markdown",
         "markdown_inline",
+        "java"
       },
       sync_install = false,
       ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
