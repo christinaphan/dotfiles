@@ -11,9 +11,23 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         config = function()
+          require("mason-lspconfig").setup({
+            ensure_installed = {
+              "clangd",
+              "lua_ls",
+              "html",
+              "cssls",
+              "tsserver",
+              "pyright",
+              "bashls",
+              "jdtls",
+            },
+          })
           require("mason-lspconfig").setup_handlers({
             function(server_name) -- default handler (optional)
-              require("lspconfig")[server_name].setup({})
+              if server_name ~= "jdtls" then
+                require("lspconfig")[server_name].setup({})
+              end
             end,
             -- Dedicated handler
             ["clangd"] = function()
@@ -67,7 +81,12 @@ return {
           local opts = { buffer = ev.buf, noremap = true, silent = true }
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "K", function()
+            vim.lsp.buf.hover()
+            vim.defer_fn(function()
+              vim.cmd("set background=dark")
+            end, 75)
+          end, opts)
           vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
           vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
           vim.keymap.set("n", "gn", vim.lsp.buf.rename, opts)
