@@ -20,7 +20,6 @@ return {
             clang_format = function(source_name, methods)
               require("null-ls").register(require("null-ls").builtins.formatting.clang_format.with({
                 extra_args = { "--style=file" },
-                filetypes = { "c", "cpp", "objc", "objcpp" },
               }))
             end,
             stylua = function(source_name, methods)
@@ -45,6 +44,6 @@ return {
         end
       end,
     },
-    ft = { "python", "c", "cpp", "lua", "html", "css", "javascript", "typescript", "java" }
+    ft = { "python", "c", "cpp", "lua", "html", "css", "javascript", "typescript", "java", "typescriptreact" }
   }
 }

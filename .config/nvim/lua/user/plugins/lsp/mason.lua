@@ -28,7 +28,7 @@ return {
             end,
             -- Dedicated handler
             ["jdtls"] = function()
-              require("lspconfig").jdtls.setup {}
+              require("lspconfig").jdtls.setup({})
             end,
             ["clangd"] = function()
               require("lspconfig").clangd.setup({
