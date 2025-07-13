@@ -21,55 +21,55 @@ return {
               "pyright",
               "bashls",
             },
-          })
-          require("mason-lspconfig").setup_handlers({
-            function(server_name) -- default handler (optional)
-              require("lspconfig")[server_name].setup {}
-            end,
-            -- Dedicated handler
-            ["jdtls"] = function()
-              require("lspconfig").jdtls.setup({})
-            end,
-            ["clangd"] = function()
-              require("lspconfig").clangd.setup({
-                cmd = {
-                  "clangd",
-                  "--enable-config",
-                  "--background-index",
-                },
-              })
-            end,
-            ["lua_ls"] = function()
-              require("lspconfig").lua_ls.setup({
-                settings = {
-                  Lua = {
-                    diagnostics = {
-                      globals = { "vim" },
-                    },
-                    workspace = {
-                      library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.stdpath("config") .. "/lua"] = true,
+            handlers = {
+              function(server_name) -- default handler
+                require("lspconfig")[server_name].setup {}
+              end,
+              -- Dedicated handler
+              ["jdtls"] = function()
+                require("lspconfig").jdtls.setup({})
+              end,
+              ["clangd"] = function()
+                require("lspconfig").clangd.setup({
+                  cmd = {
+                    "clangd",
+                    "--enable-config",
+                    "--background-index",
+                  },
+                })
+              end,
+              ["lua_ls"] = function()
+                require("lspconfig").lua_ls.setup({
+                  settings = {
+                    Lua = {
+                      diagnostics = {
+                        globals = { "vim" },
+                      },
+                      workspace = {
+                        library = {
+                          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                          [vim.fn.stdpath("config") .. "/lua"] = true,
+                        },
                       },
                     },
                   },
-                },
-              })
-            end,
-            ["html"] = function()
-              local capabilities = vim.lsp.protocol.make_client_capabilities()
-              capabilities.textDocument.completion.completionItem.snippetSupport = true
-              require("lspconfig").html.setup({
-                capabilities = capabilities,
-              })
-            end,
-            ["cssls"] = function()
-              local capabilities = vim.lsp.protocol.make_client_capabilities()
-              capabilities.textDocument.completion.completionItem.snippetSupport = true
-              require("lspconfig").cssls.setup({
-                capabilities = capabilities,
-              })
-            end,
+                })
+              end,
+              ["html"] = function()
+                local capabilities = vim.lsp.protocol.make_client_capabilities()
+                capabilities.textDocument.completion.completionItem.snippetSupport = true
+                require("lspconfig").html.setup({
+                  capabilities = capabilities,
+                })
+              end,
+              ["cssls"] = function()
+                local capabilities = vim.lsp.protocol.make_client_capabilities()
+                capabilities.textDocument.completion.completionItem.snippetSupport = true
+                require("lspconfig").cssls.setup({
+                  capabilities = capabilities,
+                })
+              end,
+            },
           })
         end,
       },
@@ -92,17 +92,29 @@ return {
           vim.keymap.set("n", "<leader>f", ":Format<CR>", opts)
         end,
       })
-      local sign = function(opts)
-        vim.fn.sign_define(opts.name, {
-          texthl = opts.name,
-          text = opts.text,
-          numhl = "",
-        })
-      end
-      sign({ name = "DiagnosticSignError", text = "" })
-      sign({ name = "DiagnosticSignWarn", text = "" })
-      sign({ name = "DiagnosticSignHint", text = "" })
-      sign({ name = "DiagnosticSignInfo", text = "" })
+
+      vim.diagnostic.config({
+        virtual_text = false,
+        severity_sort = true,
+        update_in_insert = true,
+        underline = true,
+        float = {
+          focusable = false,
+          style = "minimal",
+          border = "rounded",
+          source = "always",
+          header = "",
+          prefix = "",
+        },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN]  = "",
+            [vim.diagnostic.severity.HINT]  = "",
+            [vim.diagnostic.severity.INFO]  = "",
+          },
+        },
+      })
 
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
