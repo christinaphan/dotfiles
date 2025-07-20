@@ -1,5 +1,6 @@
-import = ["/Users/christina/.config/alacritty/colorschemes/rose-pine.toml"]
+[general]
 live_config_reload = true
+import = ["/Users/christina/.config/alacritty/colorschemes/rose-pine.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
