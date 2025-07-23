@@ -35,3 +35,4 @@ vim.opt.guicursor = "a:block"                   -- always have block mode cursor
 vim.opt.wildmenu = true                         -- enable cmd line completion
 vim.opt.foldmethod = "manual"                   -- enable manual folds
 vim.opt.textwidth = 80                          -- max 80 chars per line
+vim.opt.winborder = "rounded"                   -- use rounded borders on all floating windows
