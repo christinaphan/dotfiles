@@ -25,3 +25,10 @@ My dotfiles managed via a git bare repo.
 * pdf reader: `zathura`
 * wallpaper: `feh`
 * notes: `obsidian`
+
+## MacOS Keyboard Speedup
+
+```
+defaults write -g InitialKeyRepeat -int 18
+defaults write -g KeyRepeat -int 1
+```
