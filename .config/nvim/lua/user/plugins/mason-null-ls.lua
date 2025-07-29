@@ -5,8 +5,10 @@ return {
       "clang_format",
       "black",
       "stylua",
+      "prettierd",
     },
     automatic_installation = true,
+    handlers = {},
   },
   dependencies = {
     { "mason-org/mason.nvim", cmd = "Mason", opts = {} },
