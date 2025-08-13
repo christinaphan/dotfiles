@@ -36,6 +36,24 @@ return {
                 "2",
               },
             }),
+            null_ls.builtins.formatting.prettierd.with({
+              filetypes = {
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact",
+                "vue",
+                "css",
+                "scss",
+                "less",
+                "html",
+                "json",
+                "jsonc",
+                "yaml",
+                "graphql",
+                "handlebars",
+              },
+            }),
           },
           on_attach = function(client, bufnr)
             if client.supports_method("textDocument/formatting") then
