@@ -17,12 +17,23 @@ return {
         "css",
         "markdown",
         "markdown_inline",
-        "java"
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitcommit",
+        "gitignore",
+        "diff",
+        "jq",
+        "json",
+        "typescript",
+        "javascript",
+        "tsx",
+        "java",
       },
       sync_install = false,
       ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
       highlight = {
-        enable = true,               -- false will disable the whole extension
+        enable = true, -- false will disable the whole extension
         disable = function(lang, buf)
           if lang == "tex" or lang == "latex" then
             return true
