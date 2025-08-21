@@ -1,3 +1,4 @@
+-- stylua: ignore start
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- for cmp
@@ -33,6 +34,11 @@ vim.opt.wrap = true                             -- wrap lines as needed
 vim.opt.guifont = "Source Code Pro:h12"         -- the font used in graphical neovim applications
 vim.opt.guicursor = "a:block"                   -- always have block mode cursor
 vim.opt.wildmenu = true                         -- enable cmd line completion
-vim.opt.foldmethod = "manual"                   -- enable manual folds
+-- vim.opt.foldmethod = "manual"                   -- enable manual folds [NOTE: changed to expr in treesitter config]
+vim.opt.foldlevel = 99                          -- keep all folds open...
+-- vim.opt.foldlevelstart = 1                   -- ... but actually only allow top level of folds to be open
+vim.opt.foldnestmax = 4                         -- don't fold anything below the 4th level of folds
+vim.opt.foldtext = ""                           -- enable syntax highlighting on folded line
 vim.opt.textwidth = 80                          -- max 80 chars per line
 vim.opt.winborder = "rounded"                   -- use rounded borders on all floating windows
+-- stylua: ignore end
