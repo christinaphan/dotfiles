@@ -34,11 +34,8 @@ return {
         host = "localhost",
         port = "${port}",
         executable = {
-          command = "node",
-          args = {
-            "/home/christina/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-            "${port}",
-          },
+          command = "js-debug-adapter",
+          args = { "${port}" },
         },
       }
 
@@ -81,7 +78,7 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      require("dap-python").setup("/home/christina/.local/share/nvim/mason/packages/debugpy/venv/bin/python")
+      require("dap-python").setup("debugpy-adapter")
     end,
   },
 }
