@@ -15,15 +15,22 @@ alias ls='lsd'
 # aliases
 alias g++='g++ --std=c++14 -Wall -Werror'
 alias cpplint='cpplint --filter=-legal/copyright'
-alias ssh_davis='ssh cphan69@pc31.cs.ucdavis.edu'
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias open=xdg-open
+alias cd=z
 
 # zsh syntax highlighting and autosuggestions
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# completions
+autoload -Uz compinit
+compinit
 
 # powerlevel10k
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure`
 [[ ! -f ${ZDOTDIR:-~}/.p10k.zsh ]] || source ${ZDOTDIR:-~}/.p10k.zsh
+
+eval "$(zoxide init zsh)"
