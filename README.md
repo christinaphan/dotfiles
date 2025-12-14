@@ -2,7 +2,7 @@
 
 My dotfiles managed via a git bare repo.
 
-![web.png](https://user-images.githubusercontent.com/88528865/186784562-6d503257-fa8b-48f5-b861-9fe09d061688.png)
+![web.png](https://github.com/user-attachments/assets/76dc0514-6007-4198-99d6-01915891d707)
 
 ![image](https://github.com/user-attachments/assets/3871b72d-b156-4f4f-a653-0d1297c018d8)
 
