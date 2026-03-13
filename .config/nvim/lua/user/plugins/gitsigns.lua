@@ -16,7 +16,7 @@ return {
   },
   -- stylua: ignore
   keys = {
-    { "<leader>gl", ":Gitsign setqflist('all')<CR>" },
+    { "<leader>gl", ":Gitsign setqflist<CR>" },
     { "<leader>gs", function() require("gitsigns").stage_hunk() end },
     { "<leader>gs", function() require("gitsigns").stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, mode="v" },
     { "<leader>gr", function() require("gitsigns").reset_hunk() end },
