@@ -28,8 +28,8 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- open and close quickfix list
-keymap("n", "<leaderl>l", [[:lua vim.diagnostic.setqflist(); vim.cmd("copen")<CR>]], opts)
-keymap("n", "<leaderl>L", ":cclose<CR>", opts)
+keymap("n", "<leader>l", [[:lua vim.diagnostic.setqflist(); vim.cmd("copen")<CR>]], opts)
+keymap("n", "<leader>L", ":cclose<CR>", opts)
 
 -- Insert --
 

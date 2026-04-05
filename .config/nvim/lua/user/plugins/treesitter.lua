@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
-  lazy = false,
+  event = "VeryLazy",
   build = ":TSUpdate",
   config = function()
     local ensure_installed = {
@@ -49,8 +49,8 @@ return {
           -- syntax highlighting
           vim.treesitter.start()
           -- folds
-          vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-          vim.opt.foldmethod = "expr"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldmethod = "expr"
           -- indents
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end

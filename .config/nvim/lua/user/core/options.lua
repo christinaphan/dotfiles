@@ -2,7 +2,6 @@
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- for cmp
-vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
 vim.opt.incsearch = true                        -- incrementally search
 vim.opt.pumheight = 10                          -- pop up menu height
@@ -37,7 +36,7 @@ vim.opt.wildmenu = true                         -- enable cmd line completion
 -- vim.opt.foldmethod = "manual"                   -- enable manual folds [NOTE: changed to expr in treesitter config]
 vim.opt.foldlevel = 99                          -- keep all folds open...
 -- vim.opt.foldlevelstart = 1                   -- ... but actually only allow top level of folds to be open
-vim.opt.foldnestmax = 4                         -- don't fold anything below the 4th level of folds
+-- vim.opt.foldnestmax = 4                         -- don't fold anything below the 4th level of folds
 vim.opt.foldtext = ""                           -- enable syntax highlighting on folded line
 vim.opt.textwidth = 80                          -- max 80 chars per line
 vim.opt.winborder = "rounded"                   -- use rounded borders on all floating windows

@@ -11,6 +11,7 @@ return {
       "bashls",
       "eslint",
       "clangd",
+      "biome",
     },
   },
   dependencies = {

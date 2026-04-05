@@ -47,6 +47,9 @@ return {
     "saadparwaiz1/cmp_luasnip",
   },
   opts = function()
+    vim.lsp.config("*", {
+      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    })
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     return {
@@ -69,7 +72,7 @@ return {
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Right"] = cmp.mapping.confirm({ select = true }),
+        ["<Right>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -116,9 +119,9 @@ return {
       },
       sources = {
         { name = "nvim_lsp", max_item_count = 6 },
-        { name = "buffer",   max_item_count = 6 },
+        { name = "buffer", max_item_count = 6 },
         { name = "path" },
-        { name = "luasnip",  max_item_count = 6 },
+        { name = "luasnip", max_item_count = 6 },
       },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,

@@ -2,24 +2,24 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "nvim-neotest/nvim-nio" },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
     -- stylua: ignore
     keys = {
       { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
     },
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup(opts)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open({})
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close({})
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close({})
-      end
-    end,
   },
   {
     "mfussenegger/nvim-dap",
@@ -36,6 +36,23 @@ return {
         executable = {
           command = "js-debug-adapter",
           args = { "${port}" },
+        },
+      }
+
+      require("dap").configurations.typescript = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+        {
+          type = "pwa-node",
+          request = "attach",
+          name = "Attach to process ID",
+          processId = require("dap.utils").pick_process,
+          cwd = "${workspaceFolder}",
         },
       }
 
@@ -67,7 +84,7 @@ return {
       { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
       { "<Left>", function() require("dap").step_out() end, desc = "Step Out" },
       { "<Right>", function() require("dap").step_into() end, desc = "Step Into" },
-      { "<Down", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<Down>", function() require("dap").step_over() end, desc = "Step Over" },
       { "<leader>td", function() require("neotest").run.run({strategy = "dap"}) end, desc = "Debug Nearest" },
     },
   },

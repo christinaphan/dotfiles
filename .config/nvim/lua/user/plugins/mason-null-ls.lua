@@ -44,7 +44,7 @@ return {
             }),
           },
           on_attach = function(client, bufnr)
-            if client.supports_method("textDocument/formatting") then
+            if client:supports_method("textDocument/formatting") then
               vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
               vim.api.nvim_create_autocmd("BufWritePre", {
                 group = augroup,
@@ -65,22 +65,22 @@ return {
     },
   },
   config = function(_, opts)
-    require("null-ls").setup(opts)
+    require("mason-null-ls").setup(opts)
     vim.api.nvim_create_user_command("Format", function()
       vim.lsp.buf.format({
-        filer = function(client)
+        filter = function(client)
           return client.name == "null-ls"
         end,
       })
     end, { desc = "Format buffer with null-ls" })
   end,
-  event = { "VeryLazy" },
+  event = "VeryLazy",
   keys = {
     {
       "<leader>f",
       function()
         vim.lsp.buf.format({
-          filer = function(client)
+          filter = function(client)
             return client.name == "null-ls"
           end,
         })
