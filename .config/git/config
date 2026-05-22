@@ -23,13 +23,18 @@
   untracked = yellow
 [core]
   editor = /usr/bin/nvim
-[difftool]
-  prompt = true
 [diff]
   tool = nvimdiff
   algorithm = histogram
+[difftool]
+  prompt = false
+[merge]
+  tool = nvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false
 [difftool "nvimdiff"]
-  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+  layout = "LOCAL,BASE,REMOTE / MERGED"
 [push]
   autoSetupRemote = true
 [alias]
@@ -47,3 +52,5 @@
   sort = -committerdate
 [tag]
   sort = version:refname
+[rebase]
+  updateRefs = true

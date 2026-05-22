@@ -22,6 +22,5 @@ return {
     { "<leader>gr", function() require("gitsigns").reset_hunk() end },
     { "<leader>gr", function() require("gitsigns").reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, mode="v" },
     { "<leader>gp", function() require("gitsigns").preview_hunk() end },
-  }
-,
+  },
 }

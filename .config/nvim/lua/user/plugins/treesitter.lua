@@ -28,6 +28,7 @@ return {
       "javascript",
       "tsx",
       "java",
+      "rust",
     }
     require("nvim-treesitter").install(ensure_installed)
 

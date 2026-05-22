@@ -12,6 +12,7 @@ return {
       "eslint",
       "clangd",
       "biome",
+      "rust_analyzer",
     },
   },
   dependencies = {
