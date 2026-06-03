@@ -18,7 +18,7 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+      { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
     },
   },
   {
@@ -38,6 +38,16 @@ return {
           args = { "${port}" },
         },
       }
+
+      require("dap").adapters["node"] = function(cb, config)
+        config.type = "pwa-node"
+        local pwa_adapter = require("dap").adapters["pwa-node"]
+        if type(pwa_adapter) == "function" then
+          pwa_adapter(cb, config)
+        else
+          cb(pwa_adapter)
+        end
+      end
 
       require("dap").configurations.typescript = {
         {
@@ -70,8 +80,6 @@ return {
       { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
       { "<leader>dc", function() require("dap").continue() end, desc = "Run/Continue" },
-      { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
-      { "<leader>dg", function() require("dap").goto_() end, desc = "Go to Line (No Execute)" },
       { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
       { "<leader>dj", function() require("dap").down() end, desc = "Down" },
       { "<leader>dk", function() require("dap").up() end, desc = "Up" },

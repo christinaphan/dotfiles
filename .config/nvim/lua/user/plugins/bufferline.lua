@@ -1,6 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
-  event = "VimEnter",
+  event = "VeryLazy",
   opts = {
     options = {
       mode = "buffers", -- set to "tabs" to only show tabpages instead

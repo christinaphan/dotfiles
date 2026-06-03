@@ -10,7 +10,7 @@ local diagnostics = {
 
 return {
   "nvim-lualine/lualine.nvim",
-  event = "VimEnter",
+  event = "VeryLazy",
   opts = {
     options = {
       icons_enabled = false,

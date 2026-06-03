@@ -60,7 +60,9 @@ return {
       },
       mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
+        ["<Up>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -85,10 +87,7 @@ return {
           else
             fallback()
           end
-        end, {
-          "i",
-          "s",
-        }),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -97,10 +96,7 @@ return {
           else
             fallback()
           end
-        end, {
-          "i",
-          "s",
-        }),
+        end, { "i", "s" }),
       },
       formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -118,7 +114,7 @@ return {
         end,
       },
       sources = {
-        { name = "nvim_lsp", max_item_count = 6 },
+        { name = "nvim_lsp" },
         { name = "buffer", max_item_count = 6 },
         { name = "path" },
         { name = "luasnip", max_item_count = 6 },

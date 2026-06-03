@@ -17,7 +17,15 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float, { noremap = true, silent = 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
+    -- inlay hints
+    -- local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    -- if client and client:supports_method("textDocument/inlayHint") then
+    --   vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+    -- end
     local opts = { buffer = ev.buf, noremap = true, silent = true }
+    vim.keymap.set("n", "<leader>th", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end, opts)
 
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
