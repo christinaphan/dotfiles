@@ -33,8 +33,9 @@
 [mergetool]
   prompt = false
   keepBackup = false
-[difftool "nvimdiff"]
-  layout = "LOCAL,BASE,REMOTE / MERGED"
+  hideResolved = true
+[mergetool "nvimdiff"]
+  layout = "LOCAL,MERGED,REMOTE"
 [push]
   autoSetupRemote = true
 [alias]

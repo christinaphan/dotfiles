@@ -3,10 +3,3 @@ os:
   editPreset: 'nvim'
 
 promptToReturnFromSubprocess: false
-
-customCommands:
-  - key: 'v'
-    command: 'nvim "{{.SelectedFile.Name}}" -c "lua require(\"gitsigns\").toggle_deleted()"'
-    context: 'files'
-    description: 'Open in Neovim and show diff'
-    output: terminal

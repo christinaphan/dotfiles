@@ -27,9 +27,36 @@ keymap("n", "<A-Right>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- open and close quickfix list
-keymap("n", "<leader>l", [[:lua vim.diagnostic.setqflist(); vim.cmd("copen")<CR>]], opts)
-keymap("n", "<leader>L", ":cclose<CR>", opts)
+-- Toggle location list
+vim.keymap.set("n", "<leader>l", function()
+  local wins = vim.fn.getloclist(0, { winid = 0 }).winid
+  if wins == 0 then
+    vim.diagnostic.setloclist()
+    vim.cmd("lopen")
+  else
+    vim.cmd("lclose")
+  end
+end, { desc = "Toggle loclist (diagnostics)" })
+
+-- Toggle quickfix list
+vim.keymap.set("n", "<leader>q", function()
+  local wins = vim.fn.getqflist({ winid = 0 }).winid
+  if wins == 0 then
+    vim.cmd("copen")
+  else
+    vim.cmd("cclose")
+  end
+end, { desc = "Toggle quickfix" })
+
+-- Diff getput
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.wo.diff then
+      vim.keymap.set("n", "<leader>dh", ":diffget LOCAL<CR>", { buffer = true, desc = "Get from LOCAL (ours)" })
+      vim.keymap.set("n", "<leader>dl", ":diffget REMOTE<CR>", { buffer = true, desc = "Get from REMOTE (theirs)" })
+    end
+  end,
+})
 
 -- Insert --
 

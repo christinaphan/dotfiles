@@ -9,18 +9,64 @@ return {
       topdelete = { text = "‾" },
       changedelete = { text = "~" },
     },
-    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  },
-  -- stylua: ignore
-  keys = {
-    { "<leader>gl", ":Gitsign setqflist<CR>" },
-    { "<leader>gs", function() require("gitsigns").stage_hunk() end },
-    { "<leader>gs", function() require("gitsigns").stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, mode="v" },
-    { "<leader>gr", function() require("gitsigns").reset_hunk() end },
-    { "<leader>gr", function() require("gitsigns").reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, mode="v" },
-    { "<leader>gp", function() require("gitsigns").preview_hunk() end },
+    signcolumn = true,
+    numhl = false,
+    linehl = false,
+    word_diff = false,
+    on_attach = function(bufnr)
+      local gs = require("gitsigns")
+      local function map(mode, l, r, desc)
+        vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
+      end
+
+      map("n", "]c", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          gs.nav_hunk("next")
+        end
+      end, "Next hunk")
+      map("n", "[c", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          gs.nav_hunk("prev")
+        end
+      end, "Prev hunk")
+
+      -- Staging
+      map("n", "<leader>gs", gs.stage_hunk, "Stage hunk")
+      map("v", "<leader>gs", function()
+        gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end, "Stage hunk (visual)")
+      map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")
+
+      -- Reset
+      map("n", "<leader>gr", gs.reset_hunk, "Reset hunk")
+      map("v", "<leader>gr", function()
+        gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end, "Reset hunk (visual)")
+      map("n", "<leader>gR", gs.reset_buffer, "Reset buffer")
+
+      -- Preview
+      map("n", "<leader>gp", gs.preview_hunk_inline, "Preview hunk inline")
+      map("n", "<leader>gP", gs.preview_hunk, "Preview hunk (float)")
+
+      -- Toggle in-line diff
+      map("n", "<leader>gd", function()
+        gs.toggle_deleted()
+        gs.toggle_linehl()
+        gs.toggle_word_diff()
+      end, "Toggle inline diff")
+
+      -- Blame
+      map("n", "<leader>gb", function()
+        gs.blame_line({ full = true })
+      end, "Blame line")
+      map("n", "<leader>gB", gs.toggle_current_line_blame, "Toggle line blame")
+
+      -- Quickfix list of hunks
+      map("n", "<leader>gq", ":Gitsigns setqflist<CR>")
+    end,
   },
 }
