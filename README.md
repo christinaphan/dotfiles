@@ -1,7 +1,5 @@
 # dotfiles
 
-My dotfiles managed via a git bare repo.
-
 ![web.png](/images/web.png)
 
 ![image](/images/image.png)

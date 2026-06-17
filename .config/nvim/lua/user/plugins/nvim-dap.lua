@@ -61,8 +61,25 @@ return {
           type = "pwa-node",
           request = "attach",
           name = "Attach to process ID",
-          processId = require("dap.utils").pick_process,
+          processId = function()
+            return require("dap.utils").pick_process({
+              filter = function(proc)
+                return proc.name:find("node") ~= nil and not proc.name:find("%.local/share") -- mason LSPs
+              end,
+            })
+          end,
           cwd = "${workspaceFolder}",
+          sourceMaps = true,
+          localRoot = "${workspaceFolder}",
+          remoteRoot = "${workspaceFolder}",
+          resolveSourceMapLocations = {
+            "${workspaceFolder}/src/**",
+            "!**/node_modules/**",
+          },
+          skipFiles = {
+            "<node_internals>/**",
+            "**/node_modules/**",
+          },
         },
       }
 
@@ -90,9 +107,9 @@ return {
       { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
       { "<leader>ds", function() require("dap").session() end, desc = "Session" },
       { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
-      { "<Left>", function() require("dap").step_out() end, desc = "Step Out" },
-      { "<Right>", function() require("dap").step_into() end, desc = "Step Into" },
-      { "<Down>", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<Up>", function() require("dap").step_out() end, desc = "Step Out" },
+      { "<Down>", function() require("dap").step_into() end, desc = "Step Into" },
+      { "<Right>", function() require("dap").step_over() end, desc = "Step Over" },
       { "<leader>td", function() require("neotest").run.run({strategy = "dap"}) end, desc = "Debug Nearest" },
     },
   },

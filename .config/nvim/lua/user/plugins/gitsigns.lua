@@ -61,9 +61,9 @@ return {
 
       -- Blame
       map("n", "<leader>gb", function()
-        gs.blame_line({ full = true })
+        gs.blame_line()
       end, "Blame line")
-      map("n", "<leader>gB", gs.toggle_current_line_blame, "Toggle line blame")
+      map("n", "<leader>gB", gs.blame, "Blame file")
 
       -- Quickfix list of hunks
       map("n", "<leader>gq", ":Gitsigns setqflist<CR>")
